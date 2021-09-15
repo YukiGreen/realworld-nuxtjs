@@ -2,11 +2,9 @@
   <div class="auth-page">
     <div class="container page">
       <div class="row">
-
         <div class="col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center">{{ isLogin ? 'Sign in' : 'Sign up' }}</h1>
           <p class="text-xs-center">
-            <!-- <a href="">Have an account?</a> -->
             <nuxt-link v-if="isLogin" to="/register">Need an account?</nuxt-link>
             <nuxt-link v-else to="/login">Have an account?</nuxt-link>
           </p>
@@ -15,10 +13,11 @@
             <template
               v-for="(messages, field) in errors"
             >
-              <li
+              {{ field }} {{ messages }}
+              <!-- <li
                 v-for="(message, index) in messages"
                 :key="index"
-              >{{ field }} {{ message }}</li>
+              >{{ field }} {{ message }}</li> -->
             </template>
           </ul>
 
@@ -80,7 +79,7 @@ export default {
             user: this.user
           })
 
-        // console.log(data)
+        console.log(this.user, data);
         // TODO: 保存用户的登录状态
         this.$store.commit('setUser', data.user)
 
